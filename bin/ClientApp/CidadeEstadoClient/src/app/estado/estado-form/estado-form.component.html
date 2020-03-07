@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="row">
+        <form [formGroup]="estadoForm" (ngSubmit)="onSubmit()">           
+            <legend *ngIf="editando">Editar Estado</legend>
+            <legend *ngIf="!editando">Criar Estado</legend>
+            <button class="btn btn-default" [routerLink]="['/estado']" value="Voltar">Voltar</button>
+
+            <div class="form-group" [ngClass]="{ 'has-error': nomeInvalido() }">
+                <label for="nome" class="control-label">Nome</label>
+                <input type="text" [(ngModel)]="estado.nome" class="form-control" formControlName="nome" id="nome" name="nome">
+                <p *ngIf="nomeInvalido()" id="nome_error" class="help-block">Nome Inválido.</p>
+            </div>
+        
+            <div class="form-group" [ngClass]="{ 'has-error': abreviacaoInvalida() }">
+                <label for="abreviacao" class="control-label">Abreviação</label>
+                <input type="text" [(ngModel)]="estado.abreviacao" class="form-control" formControlName="abreviacao" id="abreviacao" name="abreviacao">
+                <p *ngIf="abreviacaoInvalida()" id="abreviacao_error" class="help-block">Abreviacao inválida.</p>
+            </div>
+        </form>	
+
+        <label class="control-label">Cidades</label>
+        <div *ngFor="let cidade of estado.cidades" class="form-group">
+            <input type="text" [(ngModel)]="cidade.nome" class="form-control">                
+        </div>
+
+        <div class="form-group">
+            <button type="button" (click) = "adicionarCidade()" class="btn btn-primary">Adicionar Cidade</button>
+        </div>
+
+        <div>
+            <button (click)="onSubmit()" class="btn btn-primary">Salvar</button>
+        </div>
+
+    </div>
+  </div>

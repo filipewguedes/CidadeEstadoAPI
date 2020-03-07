@@ -1,0 +1,33 @@
+<div class="container">
+    <legend>Lista de Estados</legend>
+    <button class="btn btn-default" [routerLink]="['/estado/criar']" value="Criar Novo">Criar Novo</button>
+    <div class="row">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Nome
+                    </th>
+                    <th>
+                        Abreviação
+                    </th>
+                    <th>
+                        Visualizar
+                    </th>
+                    <th>
+                        Editar
+                    </th>
+                    <th>
+                        Apagar
+                    </th>
+                </tr>
+            </thead>
+            <tr *ngFor="let estado of estados;">
+                <td> {{estado.nome}}</td>
+                <td> {{estado.abreviacao}} </td>
+                <td><button class="btn btn-default" [routerLink]="['/estado/' + estado._id]" value="Visualizar"><i class="glyphicon glyphicon-eye-open"></i></button></td>
+                <td><button class="btn btn-default" [routerLink]="['/estado/editar/' + estado._id]" value="Editar"><i class="glyphicon glyphicon-pencil"></i></button></td>
+                <td><button class="btn btn-default" (click) = "onDelete(estado._id)" value="Excluir"><i class="glyphicon glyphicon-remove"></i></button></td>
+        </table>
+    </div>
+</div>

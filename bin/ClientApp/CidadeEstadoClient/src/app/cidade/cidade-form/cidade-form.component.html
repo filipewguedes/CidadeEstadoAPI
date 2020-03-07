@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="row">
+        <form [formGroup]="cidadeForm" (ngSubmit)="onSubmit()">           
+            <legend *ngIf="editando">Editar Cidade</legend>
+            <legend *ngIf="!editando">Criar Cidade</legend>
+            <button class="btn btn-default" [routerLink]="['/cidade']" value="Voltar">Voltar</button>
+
+            <div class="form-group" [ngClass]="{ 'has-error': nomeInvalido() }">
+                <label for="nome" class="control-label">Nome</label>
+                <input type="text" [(ngModel)]="cidade.nome" class="form-control" formControlName="nome" id="nome" name="nome">
+                <p *ngIf="nomeInvalido()" id="nome_error" class="help-block">Nome Inválido.</p>
+            </div>
+            
+            <div class="form-group">
+                <label for="estado" class="control-label">Estado</label>
+                <select [(ngModel)]="estadoSelecionado" formControlName="estado" id="estado" name="estado">
+                    <option *ngFor="let estado of estados" [ngValue]="estado.nome" value="estado.nome" >{{estado.nome}}</option>
+                </select>
+            </div>
+                                   
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Salvar</button>
+            </div>
+        
+        </form>	
+    </div>
+  </div>

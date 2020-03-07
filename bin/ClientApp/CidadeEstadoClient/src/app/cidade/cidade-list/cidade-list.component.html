@@ -1,0 +1,33 @@
+<div class="container">
+    <legend>Lista de Cidades</legend>
+    <button class="btn btn-default" [routerLink]="['/cidade/criar']" value="Criar Nova">Criar Nova</button>
+    <div class="row">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Nome
+                    </th> 
+                    <th>
+                        IdEstado
+                    </th>                   
+                    <th>
+                        Visualizar
+                    </th>
+                    <th>
+                        Editar
+                    </th>
+                    <th>
+                        Apagar
+                    </th>
+                </tr>
+            </thead>
+            <tr *ngFor="let cidade of cidades;">
+                <td> {{cidade.nome}}</td>
+                <td> {{cidade.idEstado}}</td>
+                <td><button class="btn btn-default" [routerLink]="['/cidade/' + cidade._id]" value="Visualizar"><i class="glyphicon glyphicon-eye-open"></i></button></td>
+                <td><button class="btn btn-default" [routerLink]="['/cidade/editar/' + cidade._id]" value="Editar"><i class="glyphicon glyphicon-pencil"></i></button></td>
+                <td><button class="btn btn-default" (click) = "onDelete(cidade._id)" value="Excluir"><i class="glyphicon glyphicon-remove"></i></button></td>
+        </table>
+    </div>
+</div>
